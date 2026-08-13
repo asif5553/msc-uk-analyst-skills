@@ -25,8 +25,8 @@ problem). The taxonomy is derived from ESCO and O\*NET, then corpus-validated:
 
 Category definitions and boundary rules live in
 `v3/manual_work/annotation_guidelines_v2_0.docx`; the label space itself is defined
-once in `v3/base-model/config.py` so that every method and the gold standard share
-identical columns.
+once in `v3/base-model_tf_idf/pipeline/config.py` so that every method and the gold
+standard share identical columns.
 
 ---
 
@@ -37,7 +37,7 @@ identical columns.
 | [`docs/DATA_DICTIONARY.md`](docs/DATA_DICTIONARY.md) | Every column in every data file, and what the split is |
 | [`AGENTS.md`](AGENTS.md) | Working context and ground rules — read this before changing anything |
 | `v3/manual_work/annotation_guidelines_v2_0.docx` | Category definitions and boundary rules |
-| `v3/base-model/config.py` | The taxonomy and lexicons, defined once for all methods |
+| `v3/base-model_tf_idf/pipeline/config.py` | The taxonomy and lexicons, defined once for all methods |
 
 ---
 
@@ -58,16 +58,16 @@ identical columns.
 | `annotation_scheme_v3.xlsx` | The coding scheme |
 | `postings_reader.html` | Standalone browser viewer for reading postings during annotation |
 
-**`v3/base-model/`** — Method 1 of 4: TF-IDF baseline
+**`v3/base-model_tf_idf/`** — Method 1 of 4: TF-IDF baseline
 
 | File | What it is |
 |---|---|
-| `config.py` | Shared taxonomy, Tier 2 lexicons, negative patterns |
-| `tfidf_baseline.py` | The baseline, in two variants (below) |
-| `evaluate.py` | Splitting, per-category threshold tuning, scoring |
-| `tfidf_A_cosine_test.csv` | Test-split results, variant A |
-| `tfidf_B_weighted_hit_test.csv` | Test-split results, variant B |
-| `tfidf_predictions_corpus.csv` | Predictions across the full corpus from the better variant |
+| `pipeline/config.py` | Shared taxonomy, Tier 2 lexicons, negative patterns |
+| `pipeline/tfidf_baseline.py` | The baseline, in two variants (below) |
+| `pipeline/evaluate.py` | Splitting, per-category threshold tuning, scoring |
+| `results/tfidf_A_cosine_test.csv` | Test-split results, variant A |
+| `results/tfidf_B_weighted_hit_test.csv` | Test-split results, variant B |
+| `results/tfidf_predictions_corpus.csv` | Predictions across the full corpus from the better variant |
 
 ### `v2/`, `V1/` — earlier iterations
 
@@ -113,15 +113,16 @@ Per-category precision, recall, F1 and support are in the two `*_test.csv` files
 ```bash
 pip install -r requirements.txt
 
-cd v3/base-model
+cd v3/base-model_tf_idf/pipeline
 python tfidf_baseline.py \
-  --corpus ../manual_work/uk_analyst_corpus_v4_clean.csv \
-  --gold   ../manual_work/gold_standard_annotation_workbook_v2.xlsx \
-  --outdir results
+  --corpus ../../manual_work/uk_analyst_corpus_v4_clean.csv \
+  --gold   ../../manual_work/gold_standard_annotation_workbook_v2.xlsx \
+  --outdir ../results
 ```
 
 Writes per-variant dev/test reports, corpus-wide predictions and a
-`tfidf_summary.json` with the tuned thresholds and timings into `results/`.
+`tfidf_summary.json` with the tuned thresholds and timings into
+`v3/base-model_tf_idf/results/`.
 
 ---
 

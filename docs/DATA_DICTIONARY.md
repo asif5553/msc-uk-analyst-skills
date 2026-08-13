@@ -7,7 +7,7 @@ Every file that carries data, and what its columns mean. Paths are for `v3/`;
 
 ## The 13 categories
 
-Defined once in `v3/base-model/config.py` as `CATEGORIES`. **The order below is the
+Defined once in `v3/base-model_tf_idf/pipeline/config.py` as `CATEGORIES`. **The order below is the
 column order** in the gold standard and in every prediction matrix.
 
 | # | Column | Meaning |
@@ -88,7 +88,7 @@ pilot round, which was used to refine the guidelines before the main annotation.
 
 ---
 
-## `base-model/tfidf_predictions_corpus.csv`
+## `base-model_tf_idf/results/tfidf_predictions_corpus.csv`
 
 Predicted labels for the **whole corpus** from the better-performing variant.
 
@@ -97,12 +97,12 @@ Predicted labels for the **whole corpus** from the better-performing variant.
 | `posting_id` | str | Joins to the corpus. |
 | `programming` … `ethics_governance` | 0/1 | Predictions, in taxonomy order. |
 
-The pipeline also writes `tfidf_predictions_gold.csv` at runtime, which adds a
-`split` column (`dev` / `test`) — that one is gitignored.
+The pipeline also writes a per-variant `tfidf_predictions_gold_*.csv`, which adds a
+`split` column (`dev` / `test`); those are committed alongside this file.
 
 ---
 
-## `base-model/tfidf_A_cosine_test.csv`, `tfidf_B_weighted_hit_test.csv`
+## `base-model_tf_idf/results/tfidf_A_cosine_test.csv`, `tfidf_B_weighted_hit_test.csv`
 
 Scored results on the test split. One row per category, then aggregate rows.
 
