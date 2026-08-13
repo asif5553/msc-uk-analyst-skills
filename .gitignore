@@ -6,9 +6,6 @@ venv/
 env/
 .ipynb_checkpoints/
 
-# Results written by the pipeline at runtime
-results/
-
 # Office lock files
 ~$*
 

@@ -7,7 +7,10 @@ Context for AI coding agents working in this repository. Humans: start with `REA
 An MSc research project, not a product. It extracts a **13-category skill taxonomy**
 from UK data/business analyst job adverts and measures the extraction against a
 **manually annotated gold standard of 300 postings**. Four extraction methods are
-planned; **method 1 of 4 (TF-IDF baseline) is complete**, in `v3/base-model/`.
+planned. Method 1, the **TF-IDF baseline**, is complete in `v3/base-model_tf_idf/`;
+zero-shot, LLM prompting and BERTopic have all been run and their results committed
+under `v3/models_v1/` and `v3/models_v2/`, but see `README.md` for which of those
+numbers are the reported ones.
 
 The point of the repo is *comparability between methods*. Anything that makes two
 methods less directly comparable is a regression, even if it improves a score.
@@ -17,8 +20,10 @@ methods less directly comparable is a regression, even if it improves a score.
 ```
 V1/  v2/     earlier iterations — provenance only, DO NOT EDIT
 v3/           current work
-  manual_work/   corpus construction + human annotation
-  base-model/    method 1: TF-IDF baseline
+  manual_work/        corpus construction + human annotation
+  base-model_tf_idf/  method 1: TF-IDF baseline (pipeline/ + results/)
+  models_v1/          first pass at methods 2-3: zero-shot, LLM prompting
+  models_v2/          revised zero-shot and LLM prompting, plus BERTopic
 ```
 
 `V1/` and `v2/` are frozen historical snapshots. Never edit, refactor, "fix" or
@@ -27,11 +32,14 @@ don't patch it.
 
 ## Ground rules
 
-**The label space is defined once.** `v3/base-model/config.py` holds `CATEGORIES`,
-and its **order is load-bearing** — it defines the column order of every prediction
-matrix and must match the gold-standard workbook columns. Never reorder, rename,
-insert or drop a category without updating the gold workbook and every results file
-in lockstep. All four methods import from this one file.
+**The label space is defined once.** `config.py` holds `CATEGORIES`, and its
+**order is load-bearing** — it defines the column order of every prediction matrix
+and must match the gold-standard workbook columns. Never reorder, rename, insert or
+drop a category without updating the gold workbook and every results file in
+lockstep. Each method directory currently carries a byte-identical copy of
+`config.py` (they are run standalone, including on Colab); treat
+`v3/base-model_tf_idf/pipeline/config.py` as the source and propagate any change to
+every copy, or the methods stop being comparable.
 
 **Never tune on test.** Thresholds are selected on the dev split only
 (`tune_thresholds` in `evaluate.py`) and applied unchanged to test. Any change that
@@ -48,10 +56,11 @@ the output of manual annotation work against documented guidelines. It is data, 
 a generated artefact — never rewrite it programmatically, and never "correct" labels
 to improve a score.
 
-**Don't commit generated results.** The pipeline writes into `results/`, which is
-gitignored. The `*_test.csv` and `tfidf_predictions_corpus.csv` files currently in
-`v3/base-model/` are deliberately committed snapshots of the reported baseline.
-Overwrite them only when you intend to change the numbers in `README.md` too.
+**Results are committed.** Every `results/` directory is tracked — the numbers
+behind each method live in the repo next to the code that produced them, so a
+reader can check a claim without re-running anything. Regenerating a results file
+is therefore a reviewable change: overwrite one only when you intend to change the
+numbers reported in `README.md` too, and say so in the commit message.
 
 ## How the baseline works
 
