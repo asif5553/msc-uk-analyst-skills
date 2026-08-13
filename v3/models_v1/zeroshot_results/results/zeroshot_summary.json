@@ -1,0 +1,33 @@
+{
+  "method": "zeroshot",
+  "model": "facebook/bart-large-mnli",
+  "hypothesis_template": "This job posting requires {}.",
+  "chunk_words": 350,
+  "chunk_overlap": 50,
+  "device": "cuda",
+  "thresholds": {
+    "programming": 0.93,
+    "sql": 0.81,
+    "visualisation_bi": 0.975,
+    "reporting": 0.99,
+    "excel": 0.915,
+    "statistics": 0.925,
+    "machine_learning": 0.97,
+    "data_cleaning": 0.96,
+    "etl": 0.61,
+    "data_modelling": 0.945,
+    "cloud": 0.875,
+    "stakeholder_comm": 0.915,
+    "ethics_governance": 0.875
+  },
+  "test_macro_f1": 0.6844377838531361,
+  "test_micro_f1": 0.794425087108014,
+  "dev_macro_f1": 0.7547125388766142,
+  "hard_accuracy": 0.5094339622641509,
+  "seconds_gold": 737.8089263439178,
+  "seconds_per_posting": 2.4593630878130597,
+  "n_gold": 300,
+  "n_dev": 100,
+  "n_test": 200,
+  "seconds_corpus": 2067.95925116539
+}

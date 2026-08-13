@@ -1,0 +1,6 @@
+method,macro_precision,macro_recall,macro_F1,micro_F1,hard_all,hard_lexicon_FP,hard_lexicon_FN,sec_per_posting
+TF-IDF cosine (A),0.73,0.83,0.759,0.811,0.396,0.167,0.586,0.02
+Zero-shot NLI (BART-MNLI),0.709,0.692,0.684,0.794,0.509,0.542,0.483,2.46
+LLM Qwen2.5-7B (full prompt),0.889,0.488,0.61,0.681,0.453,0.833,0.138,5.93
+LLM Qwen2.5-7B (minimal prompt),0.921,0.485,0.605,0.703,0.491,0.875,0.172,5.69
+Lexicon ceiling (not independent),0.936,0.941,0.937,0.962,0.0,0.0,0.0,0.01

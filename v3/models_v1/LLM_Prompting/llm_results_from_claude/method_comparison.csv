@@ -1,0 +1,5 @@
+method,precision,recall,macro_F1,micro_F1,hard_all,hard_FP,hard_FN,sec_per_posting
+TF-IDF cosine (A),0.73,0.83,0.759,0.811,0.396,0.167,0.586,0.02
+Zero-shot NLI,0.709,0.692,0.684,0.794,0.509,0.542,0.483,2.46
+LLM Qwen2.5-7B (full),0.889,0.488,0.61,0.681,0.453,0.833,0.138,5.93
+Lexicon ceiling,0.936,0.941,0.937,0.962,0.0,0.0,0.0,0.01

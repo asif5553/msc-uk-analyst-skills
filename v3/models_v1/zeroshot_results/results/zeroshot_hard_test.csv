@@ -1,0 +1,17 @@
+subset,n_pairs,accuracy
+hard subset (all),53,0.5094339622641509
+  lexicon false positives,24,0.5416666666666666
+  lexicon false negatives,29,0.4827586206896552
+    programming,3,0.0
+    visualisation_bi,2,0.0
+    reporting,12,0.5
+    excel,2,1.0
+    statistics,4,0.5
+    machine_learning,4,0.5
+    data_cleaning,5,1.0
+    etl,3,0.3333333333333333
+    data_modelling,1,0.0
+    cloud,12,0.5
+    stakeholder_comm,4,0.75
+    ethics_governance,1,0.0
+easy subset (lexicon agrees with gold),2547,0.8943855516293678

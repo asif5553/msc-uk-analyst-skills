@@ -1,0 +1,66 @@
+{
+  "method": "tfidf",
+  "headline_variant": "A_cosine",
+  "lexicon_gold_agreement": 0.9771794871794872,
+  "n_hard_pairs": 89,
+  "results": {
+    "A_cosine": {
+      "thresholds": {
+        "programming": 0.005,
+        "sql": 0.045,
+        "visualisation_bi": 0.07,
+        "reporting": 0.06,
+        "excel": 0.03,
+        "statistics": 0.05,
+        "machine_learning": 0.11,
+        "data_cleaning": 0.32,
+        "etl": 0.055,
+        "data_modelling": 0.275,
+        "cloud": 0.12,
+        "stakeholder_comm": 0.065,
+        "ethics_governance": 0.26
+      },
+      "test_macro_f1": 0.7592479286586011,
+      "test_micro_f1": 0.8112344872632267,
+      "dev_macro_f1": 0.8490310998264827,
+      "hard_accuracy": 0.39622641509433965
+    },
+    "B_weighted_hit": {
+      "thresholds": {
+        "programming": 0.005,
+        "sql": 0.005,
+        "visualisation_bi": 0.005,
+        "reporting": 0.005,
+        "excel": 0.075,
+        "statistics": 0.005,
+        "machine_learning": 0.005,
+        "data_cleaning": 0.005,
+        "etl": 0.005,
+        "data_modelling": 0.005,
+        "cloud": 0.005,
+        "stakeholder_comm": 0.005,
+        "ethics_governance": 0.005
+      },
+      "test_macro_f1": 0.937448205714046,
+      "test_micro_f1": 0.9621698786581013,
+      "dev_macro_f1": 0.951085020408767,
+      "hard_accuracy": 0.0
+    },
+    "C_lexicon": {
+      "thresholds": null,
+      "test_macro_f1": 0.937448205714046,
+      "test_micro_f1": 0.9621698786581013,
+      "hard_accuracy": 0.0
+    }
+  },
+  "timings_sec": {
+    "A_cosine_sec": 0.13683128356933594,
+    "B_weighted_hit_sec": 3.3047170639038086,
+    "C_lexicon_sec": 2.5120043754577637
+  },
+  "n_corpus": 820,
+  "n_gold": 300,
+  "n_dev": 100,
+  "n_test": 200,
+  "note": "Variant B shares its term lists with the annotation guidelines and is reported as a lexical upper bound, not as an independent method. Variant A is the reportable Attwood & Williams baseline."
+}

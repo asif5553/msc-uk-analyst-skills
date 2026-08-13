@@ -1,0 +1,17 @@
+{
+  "method": "llm_structured_prompting",
+  "backend": "local",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "prompt_variant": "full",
+  "lexicons_in_prompt": false,
+  "test_macro_f1": 0.6102347589847021,
+  "test_micro_f1": 0.6813996316758748,
+  "dev_macro_f1": 0.6746537957808857,
+  "hard_accuracy": 0.4528301886792453,
+  "parse_failures": 0,
+  "seconds_gold": 1778.4845976829529,
+  "seconds_per_posting": 5.92828199227651,
+  "n_gold": 300,
+  "n_dev": 100,
+  "n_test": 200
+}

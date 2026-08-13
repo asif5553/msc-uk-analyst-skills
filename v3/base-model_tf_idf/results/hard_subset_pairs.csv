@@ -1,0 +1,90 @@
+posting_id,job_title,split,category,gold,lexicon,error_type,tfidf_cosine,note
+P003,Lead Data & Analytics Engineer,test,data_cleaning,0,1,lexicon_false_positive,1,"""data integrity, quality"" is not the literal lexicon term - cleaning 1->0 (pilot precedent)"
+P017,Data Analyst - Billing,test,reporting,0,1,lexicon_false_positive,1,"family corrected: title ""Data Analyst - Billing"" -> data analyst (title decides). reporting=0 correct - team description. other 1->0, nothing verbatim-able"
+P035,FP&A Analyst,dev,stakeholder_comm,1,0,lexicon_false_negative,0,no visualisation term - 1->0. junior via body evidence correct
+P040,"Lead Data Scientist ( 1 role available), Data Science Hub, Data & Analysis, Ministry of Justice (Ref: 82629)",test,etl,0,1,lexicon_false_positive,1,"""modelling demand"" is statistical modelling not data modelling - 1->0 (same correction as pilot). Pipelines belong to the Engineering Hub team - etl=0 correct"
+P049,Quality Insights Analyst,test,machine_learning,1,0,lexicon_false_negative,0,"no Excel in text - 1->0. ML=1 kept (""predictive data analytics"" explicit). ERP/CRM are described reporting sources, not skills - other 1->0"
+P052,Data Scientist,test,statistics,0,1,lexicon_false_positive,1,degree-subject rule applied correctly (Statistics degree -> no tag). other 1->0 - no verbatim
+P052,Data Scientist,test,machine_learning,1,0,lexicon_false_negative,0,degree-subject rule applied correctly (Statistics degree -> no tag). other 1->0 - no verbatim
+P056,Senior Business Analyst,test,reporting,0,1,lexicon_false_positive,1,
+P065,Senior Business Intelligence Analyst,dev,statistics,0,1,lexicon_false_positive,1,
+P072,Commercial Finance Analyst,dev,stakeholder_comm,1,0,lexicon_false_negative,0,
+P073,SAP Senior Finance Analyst,test,data_cleaning,0,1,lexicon_false_positive,0,SAP is not SQL - sql 1->0. No stakeholder term - 1->0. SAP -> other (pilot precedent)
+P081,Data Scientist,dev,cloud,0,1,lexicon_false_positive,1,"""Excellent communicator... technical and non-technical"" -> 1. Cloud=0 correct (AWS is a funders list); reporting=0 correct (personality report)"
+P091,Business Analyst (Distributed Energy Resources),dev,reporting,0,1,lexicon_false_positive,1,verbatim filled - other=1 requires it
+P100,Senior Business Analyst Oil Refinery Optimization Spanish/ German Speaking World Energy Co,test,data_cleaning,0,1,lexicon_false_positive,0,"""Develop and maintain data models"" - explicit -> 1"
+P104,Commercial Analyst,test,stakeholder_comm,1,0,lexicon_false_negative,0,"""Excellent communication and interpersonal skills"" -> 1 (boilerplate rule)"
+P107,Senior Customer Insight Analyst,test,programming,0,1,lexicon_false_positive,1,"SAS in body (""Use SQL/SAS/BigQuery"") -> statistics 1. ""GCP... would be desirable"" -> cloud 1 (desirable counts). Python/R appear ONLY in the SEO keyword footer -> programming stays 0 (new footer rule for v1.3)"
+P112,Portfolio Analyst (Data Analyst),test,cloud,0,1,lexicon_false_positive,0,"""Strong programming languages"" named -> 1; ""data quality control, validation"" -> cleaning 1; Snowflake -> etl 1. ""Hybrid working model"" is not data modelling - 1->0"
+P117,Business Data Analyst,dev,reporting,0,1,lexicon_false_positive,1,"verbatim filled. reporting=0 correct (""Reporting to the DMM"" - org structure)"
+P191,"ESG Reporting Analyst, Multi Asset Investment Solutions",dev,programming,0,1,lexicon_false_positive,1,"""communication skills... manage stakeholder expectations"" -> 1. vis 1->0 (no visual term). cleaning=1 KEPT - ""cleanse data sets"" is a good catch the scan missed. Verbatim filled"
+P210,Senior Commercial Analyst,dev,stakeholder_comm,1,0,lexicon_false_negative,0,
+P211,Commercial Analyst,dev,reporting,1,0,lexicon_false_negative,1,"""Experience in using BI software"" - bare BI with no named tool -> 0 per v1.2 BI rule. Borderline, noted"
+P229,Data Business Analyst,test,data_modelling,1,0,lexicon_false_negative,0,"no language named (""wellbeing programme"" false match) -> programming 1->0; no report term -> 0. ""Data Ingestion, Transformation"" + Snowflake -> etl 1. Your data_modelling=1 is RIGHT - ""Modelling"" sits inside the Data-related-areas list"
+P235,Data Analyst - SQL & Power BI - UK-wide,dev,programming,0,1,lexicon_false_positive,1,Snowflake database named -> etl 1. Your cloud=0 is RIGHT - the Azure mention is in the recruiter footer
+P235,Data Analyst - SQL & Power BI - UK-wide,dev,cloud,0,1,lexicon_false_positive,1,Snowflake database named -> etl 1. Your cloud=0 is RIGHT - the Azure mention is in the recruiter footer
+P244,Public Health Data Analyst (13 months fixed term),test,data_cleaning,1,0,lexicon_false_negative,1,"checked: ""collating, cleaning and analysing large datasets"" -> your data_cleaning=1 is right (my scan missed it)"
+P252,Senior Data Analyst - Hybrid On-Site - Newcastle,test,statistics,1,0,lexicon_false_negative,1,"""A/B tests"" -> statistics 1; ""automating data pipelines"" -> etl 1. No stakeholder/communication/presenting term anywhere in the text -> 1->0"
+P253,Senior Data Analyst,test,reporting,1,0,lexicon_false_negative,1,"SOURCE DATA MISMATCH: job_title says ""Senior Data Analyst"" but the body is a Brand Marketing Manager advert (The White Company). Tags must follow the body: six technical tags 1->0; ""Review and report on campaign performance"" -> reporting 1; ""influence a cross-functional team and senior stakeholders"" -> stakeholder 1; family corrected to marketing analyst. Flagged as a known source-data limitation"
+P255,FP & A Data Analyst,dev,stakeholder_comm,0,1,lexicon_false_positive,1,"no visualisation term -> 1->0. ""data warehousing concepts"" -> etl 1. Your stakeholder=0 is RIGHT - ""standards of presentation"" is document quality, not stakeholder comms"
+P278,Senior Data and Insight Analyst,dev,reporting,1,0,lexicon_false_negative,1,AWS Redshift/S3/Sagemaker named -> etl 1 (Redshift is in the ETL lexicon; cloud correctly tagged too)
+P290,Senior Data Analyst,test,machine_learning,1,0,lexicon_false_negative,0,"""develop comprehensive reporting frameworks"" -> reporting 1"
+P292,Senior Data & Insights Analyst,test,programming,0,1,lexicon_false_positive,1,
+P316,Senior Business Analyst,dev,reporting,1,0,lexicon_false_negative,1,"""hands-on experience of relational databases"" -> sql 1; ""approved by the customer and key stakeholders"" -> 1"
+P321,Coding Business Analyst,test,programming,0,1,lexicon_false_positive,1,"no report/stakeholder term -> both 1->0; ""data quality team"" -> cleaning 1. Your programming=0 RIGHT (clinical coding); vis=0 RIGHT (system name)"
+P321,Coding Business Analyst,test,visualisation_bi,0,1,lexicon_false_positive,1,"no report/stakeholder term -> both 1->0; ""data quality team"" -> cleaning 1. Your programming=0 RIGHT (clinical coding); vis=0 RIGHT (system name)"
+P331,Principal Business Analyst Finance & Controls,test,reporting,1,0,lexicon_false_negative,1,"""Finance Excellence""/""Excellent communication"" are not Excel -> 1->0. Your etl=0 RIGHT (demand pipeline = business backlog)"
+P349,Finance Business Analyst,dev,stakeholder_comm,1,0,lexicon_false_negative,0,no ETL/pipeline/warehouse term -> 1->0
+P351,Marketing Analyst,dev,stakeholder_comm,1,0,lexicon_false_negative,1,"""developing you in GCP"" -> cloud 1"
+P356,Business Analyst,dev,stakeholder_comm,1,0,lexicon_false_negative,0,no report term -> 1->0
+P384,Senior Business Analyst,dev,stakeholder_comm,1,0,lexicon_false_negative,1,"""Working knowledge of Data modelling techniques"" - explicit -> 1. Your programming=0 is RIGHT: my scan false-matched the recruiter email ""r.patel"""
+P386,Supply chain Finance Analyst,test,stakeholder_comm,1,0,lexicon_false_negative,1,
+P388,Commercial Analyst,dev,reporting,1,0,lexicon_false_negative,1,
+P392,Business Analyst,dev,reporting,1,0,lexicon_false_negative,1,"""able to analyse and report test activities and results"" as a duty -> reporting 1 (lexicon-literal, same treatment as P383)"
+P415,Senior Research Engineer/Specialist - Data Analytics,test,reporting,1,0,lexicon_false_negative,1,
+P438,Retail Finance Analyst/Assistant Accountant,test,reporting,1,0,lexicon_false_negative,0,"""Excellent organisational and communication skills"" -> 1 per the boilerplate rule (tag + note)"
+P447,Senior Financial Analyst - 1 year Fixed Term Contract,dev,programming,0,1,lexicon_false_positive,1,"checked: ""filmed entertainment and programming"" is not programming - your 0 is right"
+P451,Senior Analytics Consultant,test,cloud,1,0,lexicon_false_negative,0,"""variable data quality"" -> cleaning 1; ""Competent with SQL, preferably in cloud environments"" -> cloud 1. Your reporting=0 RIGHT (""junior direct reports"" is org structure)"
+P472,FP&A Analyst,dev,stakeholder_comm,0,1,lexicon_false_positive,1,"checked: my scan matched ""representing"" inside the recruiter intro - your 0 is right"
+P477,BI (Business Intelligence) Developer,test,data_cleaning,1,0,lexicon_false_negative,0,"""Snowflake or Redshift ... building data pipelines"" -> etl 1. Your data_cleaning=1 KEPT - ""gathering, inspecting, cleaning, transforming ... data"" is explicit"
+P477,BI (Business Intelligence) Developer,test,cloud,0,1,lexicon_false_positive,1,"""Snowflake or Redshift ... building data pipelines"" -> etl 1. Your data_cleaning=1 KEPT - ""gathering, inspecting, cleaning, transforming ... data"" is explicit"
+P494,Senior Data & Analytics Engineer,dev,data_modelling,1,0,lexicon_false_negative,1,"checked: ""modelling of data into our enterprise data warehouse"" -> your data_modelling=1 is right"
+P501,Senior Insight Analyst,test,reporting,1,0,lexicon_false_negative,1,"""Advanced skills in SQL and visualisation tools is essential"" -> vis 1. Blank cell filled: only ""excellent opportunity"" matches -> excel 0"
+P530,Business Intelligence Analyst,test,reporting,1,0,lexicon_false_negative,1,"""Stakeholder Management and People Skills"" -> 1"
+P533,Data Analyst,test,excel,0,1,lexicon_false_positive,1,"no report term in text -> 1->0. ""data governance, data quality, and data remediation"" -> cleaning 1"
+P538,Quantitative Analytics Analyst and Associate Graduate 2024 Glasgow,dev,statistics,0,1,lexicon_false_positive,1,checked: statistical/ML models sit in the team description; degree subjects excluded - your zeros match the ruling we agreed
+P538,Quantitative Analytics Analyst and Associate Graduate 2024 Glasgow,dev,machine_learning,0,1,lexicon_false_positive,1,checked: statistical/ML models sit in the team description; degree subjects excluded - your zeros match the ruling we agreed
+P538,Quantitative Analytics Analyst and Associate Graduate 2024 Glasgow,dev,stakeholder_comm,1,0,lexicon_false_negative,1,checked: statistical/ML models sit in the team description; degree subjects excluded - your zeros match the ruling we agreed
+P549,Business Intelligence (BI) Consultant SQL,test,excel,0,1,lexicon_false_positive,1,"""Programming languages: SQL, T-SQL, DAX, MDX, C#, VB.NET, VB, VBA"" -> programming 1; ""Data Warehouse, Data Mart"" -> etl 1; ""data governance and data modeling"" -> modelling 1"
+P563,Senior MI Analyst,dev,cloud,0,1,lexicon_false_positive,0,"Looker -> vis 1; SAS -> statistics 1; ""data warehouse remains fit for purpose"" + Snowflake -> etl 1; ""Good understanding of GDPR"" -> ethics 1. No data-model term anywhere -> modelling 1->0"
+P628,Data Scientist (Python),test,statistics,0,1,lexicon_false_positive,1,"""data ingestion, curation, modality integration"" -> etl 1. Your statistics=0 RIGHT - Statistics appears only in the degree list"
+P643,Digital Business Analyst - Consultant - Digital Factory,test,cloud,1,0,lexicon_false_negative,1,"checked: ""world of cloud, data, AI, connectivity"" is the company blurb - your ML=0 is right"
+P649,Business Analyst,dev,reporting,0,1,lexicon_false_positive,1,"no visualisation term -> 1->0. ""represent it using appropriate data models, flows and glossaries"" -> modelling 1. ""Reporting"" appears only in the consultancy service list (company description) -> reporting stays 0"
+P659,London Market Business Analyst,dev,reporting,1,0,lexicon_false_negative,1,
+P660,Business Analyst - Controlling - SAP S/4 HANA (24 months FTC or Interim),test,reporting,1,0,lexicon_false_negative,1,
+P670,Biofuels/Low Carbon Business Analyst,test,cloud,1,0,lexicon_false_negative,0,"no ETL, pipeline, warehouse or integration term in the text -> 1->0"
+P684,Graduate Business Analyst,test,stakeholder_comm,1,0,lexicon_false_negative,1,"blank cell filled: no cloud term -> 0. ""client-focused skills and effective communication"" -> stakeholder 1"
+P690,Lead Customer Care Specialist - Analytics,dev,sql,0,1,lexicon_false_positive,0,"ROW WAS LEFT BLANK - completed: Power BI desirable -> vis 1; ""Customer Service reports... Ad-Hoc reporting... suite of KPI reports"" -> reporting 1; ""Strong communication skills both oral and written"" -> stakeholder 1; SAP/EDI -> other. Title ""Lead"" -> senior"
+P690,Lead Customer Care Specialist - Analytics,dev,excel,0,1,lexicon_false_positive,1,"ROW WAS LEFT BLANK - completed: Power BI desirable -> vis 1; ""Customer Service reports... Ad-Hoc reporting... suite of KPI reports"" -> reporting 1; ""Strong communication skills both oral and written"" -> stakeholder 1; SAP/EDI -> other. Title ""Lead"" -> senior"
+P724,Korean Speaking Business Analyst,test,ethics_governance,0,1,lexicon_false_positive,1,"""Update and analyse spreadsheets and databases with statistical data"" -> sql 1 and statistics 1 (lexicon-literal). Your ethics=0 RIGHT - the GDPR mention is the recruiter agency privacy policy"
+P726,Senior Business Analyst,dev,cloud,1,0,lexicon_false_negative,1,blank cell filled: no report term -> 0
+P728,Commercial Excellence Business Analyst,test,reporting,1,0,lexicon_false_negative,1,
+P756,Microsoft Business Intelligence Developer,test,cloud,1,0,lexicon_false_negative,1,"SSIS -> etl 1; ""Loading the data into Power BI Data Models"" -> modelling 1"
+P770,Oracle Fusion Solution Architect/Business Analyst,test,cloud,1,0,lexicon_false_negative,0,
+P794,"Business Analyst, Systems, Insurance",test,cloud,1,0,lexicon_false_negative,1,
+P813,Power BI Developer / Commercial Analyst,test,cloud,0,1,lexicon_false_positive,1,"""complex measures in DAX ... SQL scripting"" -> programming 1. Your cloud=0 RIGHT - the Azure mention is in the Nigel Frank recruiter footer"
+P863,Business Intelligence Business Partner (BI),test,etl,0,1,lexicon_false_positive,1,"blank statistics filled: no statistical term -> 0. ""proficiency in MS Excel, SQL and PowerBI"" -> vis 1. Your etl=0 RIGHT - ""Data Warehouse Manager"" is a colleague, not a warehousing duty"
+P874,Senior Business Intelligence Developer,dev,data_modelling,0,1,lexicon_false_positive,1,"""as Azure technologies are adopted"" -> cloud 1; ""data governance and data quality requirements"" -> cleaning 1"
+P878,Commercial Finance Analyst (15 Month FTC),test,stakeholder_comm,1,0,lexicon_false_negative,0,"""Excellent standard of both written and verbal communication"" -> 1"
+P879,Analytics Architect,test,visualisation_bi,1,0,lexicon_false_negative,0,"""Azure Data Factory, T-SQL, Azure Synapse and Data Bricks"" -> cloud 1"
+P879,Analytics Architect,test,reporting,1,0,lexicon_false_negative,1,"""Azure Data Factory, T-SQL, Azure Synapse and Data Bricks"" -> cloud 1"
+P880,Senior Data Analyst,test,cloud,0,1,lexicon_false_positive,1,"""Use Snowflake as the warehousing tool"" -> etl 1"
+P890,Business Intelligence Developer,dev,excel,0,1,lexicon_false_positive,0,"DAX -> programming 1; ""development of our Data Warehouse"" -> etl 1; ""data modelling concepts, such as the Kimball methodology, and Star/Snowflake schema"" -> modelling 1; ""Azure SQL Data Warehouse"" -> cloud 1"
+P893,"Senior Financial Analyst, ATS Capex Finance",test,statistics,0,1,lexicon_false_positive,0,checked: statistics appears only in the degree list - your 0 is right
+P896,Senior Business Intelligence Architect / Lead Engineer,test,cloud,0,1,lexicon_false_positive,1,"""metrics, reports, analyses, dashboards"" -> vis 1. Your cloud=0 RIGHT - AWS Regions here is the business domain being analysed, not a cloud skill"
+P901,Senior Business Analyst,dev,cloud,1,0,lexicon_false_negative,0,"""Produce technical specifications to communicate user requirements"" -> 1"
+P902,(Global Petrochemical) External & Market Reporting Analyst,test,machine_learning,0,1,lexicon_false_positive,1,"checked: ""predictive insights"" is not predictive modelling - your 0 is defensible"
+P905,Business Analyst: Risk,test,reporting,1,0,lexicon_false_negative,1,"""PowerBI; API integrations; Microsoft stack tools; Python"" -> vis 1"
+P908,Oracle Cloud HCM Technical Consultant – Lead Data Analyst,test,cloud,1,0,lexicon_false_negative,1,"""Good Communication skills to work with wider/multiple teams"" -> 1; ""Work with business on data cleansing"" -> cleaning 1"
+P910,Lead Reporting Analyst,test,etl,0,1,lexicon_false_positive,1,"""interrogating databases, extracting & manipulating data"" -> sql 1. Your etl=0 RIGHT - ""Data Warehouse team"" is a colleague team"
+P923,Digital Business analyst,dev,cloud,1,0,lexicon_false_negative,1,blank cell filled: no report term -> 0

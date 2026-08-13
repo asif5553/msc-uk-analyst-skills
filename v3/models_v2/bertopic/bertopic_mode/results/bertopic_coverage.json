@@ -1,0 +1,192 @@
+{
+  "n_topics": 105,
+  "outlier_share": 0.446821357715863,
+  "median_best_affinity": 0.2759000062942505,
+  "categories_never_mapped": [
+    "data_cleaning"
+  ],
+  "weakly_mapped_topics": [
+    {
+      "topic": 0,
+      "n_segments": 1160,
+      "mapped_category": "ethics_governance",
+      "affinity": 0.13230000436306,
+      "top_terms": "we, diversity, inclusive, equal, our, gender, culture, status, committed, sexual"
+    },
+    {
+      "topic": 2,
+      "n_segments": 758,
+      "mapped_category": "machine_learning",
+      "affinity": 0.2092999964952469,
+      "top_terms": "please, if, cv, apply, recruitment, you, your, application, contact, this"
+    },
+    {
+      "topic": 4,
+      "n_segments": 452,
+      "mapped_category": "data_modelling",
+      "affinity": 0.13979999721050262,
+      "top_terms": "communication, written, skills, excellent, verbal, interpersonal, strong, ability, presentation, communicator"
+    },
+    {
+      "topic": 30,
+      "n_segments": 335,
+      "mapped_category": "machine_learning",
+      "affinity": 0.18639999628067017,
+      "top_terms": "over, countries, uk, brands, than, world, global, across, group, worlds"
+    },
+    {
+      "topic": 18,
+      "n_segments": 321,
+      "mapped_category": "data_modelling",
+      "affinity": 0.20069999992847443,
+      "top_terms": "skills, experience, qualifications, following, required, knowledge, essential, need, have, be"
+    },
+    {
+      "topic": 40,
+      "n_segments": 260,
+      "mapped_category": "stakeholder_comm",
+      "affinity": 0.16740000247955322,
+      "top_terms": "team, members, junior, mentoring, coaching, mentor, teams, training, guidance, your"
+    },
+    {
+      "topic": 11,
+      "n_segments": 258,
+      "mapped_category": "machine_learning",
+      "affinity": 0.20200000703334808,
+      "top_terms": "salary, up, annum, per, benefits, 50000, depending, 45000, 40000, bonus"
+    },
+    {
+      "topic": 13,
+      "n_segments": 232,
+      "mapped_category": "data_modelling",
+      "affinity": 0.2061000019311905,
+      "top_terms": "agile, scrum, waterfall, methodologies, delivery, working, experience, sprint, methodology, development"
+    },
+    {
+      "topic": 20,
+      "n_segments": 187,
+      "mapped_category": "cloud",
+      "affinity": 0.186599999666214,
+      "top_terms": "discounts, discount, gym, free, onsite, online, discounted, access, portal, retailers"
+    },
+    {
+      "topic": 53,
+      "n_segments": 181,
+      "mapped_category": "reporting",
+      "affinity": 0.16349999606609344,
+      "top_terms": "selfstarter, selfmotivated, initiative, proactive, attitude, motivated, able, highly, driven, positive"
+    },
+    {
+      "topic": 55,
+      "n_segments": 178,
+      "mapped_category": "ethics_governance",
+      "affinity": 0.20640000700950623,
+      "top_terms": "health, care, healthcare, nhs, clinical, patients, services, lives, we, trust"
+    },
+    {
+      "topic": 45,
+      "n_segments": 156,
+      "mapped_category": "data_modelling",
+      "affinity": 0.210099995136261,
+      "top_terms": "candidate, successful, candidates, will, ideal, be, have, the, profiles, following"
+    },
+    {
+      "topic": 87,
+      "n_segments": 141,
+      "mapped_category": "reporting",
+      "affinity": 0.17170000076293945,
+      "top_terms": "role, this, you, be, youll, will, considered, need, what, profile"
+    },
+    {
+      "topic": 29,
+      "n_segments": 133,
+      "mapped_category": "programming",
+      "affinity": 0.17569999396800995,
+      "top_terms": "disability, reasonable, adjustments, interview, confident, accommodation, disabilities, if, request, disabled"
+    },
+    {
+      "topic": 46,
+      "n_segments": 129,
+      "mapped_category": "programming",
+      "affinity": 0.20010000467300415,
+      "top_terms": "doing, what, youll, whats, be, it, you, will, do, things"
+    },
+    {
+      "topic": 49,
+      "n_segments": 122,
+      "mapped_category": "reporting",
+      "affinity": 0.2053000032901764,
+      "top_terms": "wellbeing, health, mental, assistance, employee, programme, access, support, app, physical"
+    },
+    {
+      "topic": 38,
+      "n_segments": 118,
+      "mapped_category": "data_modelling",
+      "affinity": 0.16169999539852142,
+      "top_terms": "holiday, days, holidays, bank, 25, plus, year, birthday, off, option"
+    },
+    {
+      "topic": 91,
+      "n_segments": 109,
+      "mapped_category": "data_modelling",
+      "affinity": 0.1177000030875206,
+      "top_terms": "events, free, social, coffee, subsidised, tea, fun, lunch, parking, christmas"
+    },
+    {
+      "topic": 41,
+      "n_segments": 105,
+      "mapped_category": "reporting",
+      "affinity": 0.1988999992609024,
+      "top_terms": "leave, annual, days, holidays, bank, 25, plus, buy, birthday, holiday"
+    },
+    {
+      "topic": 88,
+      "n_segments": 101,
+      "mapped_category": "programming",
+      "affinity": 0.13349999487400055,
+      "top_terms": "if, you, hear, like, sounds, us, love, wed, out, bit"
+    },
+    {
+      "topic": 104,
+      "n_segments": 76,
+      "mapped_category": "programming",
+      "affinity": 0.10920000076293945,
+      "top_terms": "looking, what, were, for, are, jason, mathew, we, who, about"
+    },
+    {
+      "topic": 79,
+      "n_segments": 65,
+      "mapped_category": "programming",
+      "affinity": 0.15860000252723694,
+      "top_terms": "charity, volunteering, volunteer, paid, year, days, community, day, choice, leave"
+    },
+    {
+      "topic": 96,
+      "n_segments": 62,
+      "mapped_category": "programming",
+      "affinity": 0.15479999780654907,
+      "top_terms": "need, what, you, know, now, do, have, would, things, also"
+    },
+    {
+      "topic": 84,
+      "n_segments": 57,
+      "mapped_category": "data_modelling",
+      "affinity": 0.16410000622272491,
+      "top_terms": "leave, enhanced, maternity, paternity, adoption, family, parental, pay, shared, paid"
+    },
+    {
+      "topic": 102,
+      "n_segments": 50,
+      "mapped_category": "programming",
+      "affinity": 0.2011999934911728,
+      "top_terms": "return, what, get, expect, youll, you, heres, can, doing, rewarded"
+    },
+    {
+      "topic": 103,
+      "n_segments": 44,
+      "mapped_category": "programming",
+      "affinity": 0.18799999356269836,
+      "top_terms": "cycle, scheme, work, bike, cycling, car, sacrifice, equipment, save, bikesthen"
+    }
+  ]
+}
