@@ -1,0 +1,405 @@
+# Presentation script — 18 minutes
+
+**NLP-Driven Analysis of the UK Data Analyst Job Market: A Comparative Study of
+Transformer-Based and LLM-Based Information Extraction**
+Md Asif Hossain · 25928677 · MSc Data Science · Supervisor: Ashley Williams
+
+This script goes with `MSc_Project_Presentation_18_Minutes_Ready.pptx` (13 slides).
+Every figure in it comes from the dissertation. It runs to about 2,200 spoken words,
+or about 2,150 without the optional ✂ passages. That's roughly 120 words a minute: a
+calm pace, because numbers take longer to say than they look.
+
+**How to read it**
+
+- *[Italics in brackets]* are stage directions. Don't read them aloud.
+- **Bold** marks the numbers to stress.
+- "Clock" is where you should be when you *leave* the slide. If you're more than
+  30 seconds behind by slide 8, drop the passages marked ✂.
+
+| # | Slide | Time | Clock |
+|---|-------|------|-------|
+| 1 | Title | 0:30 | 0:30 |
+| 2 | What does an analyst need to know? | 1:15 | 1:45 |
+| 3 | Research gap and questions | 1:15 | 3:00 |
+| 4 | Corpus preparation | 1:30 | 4:30 |
+| 5 | Taxonomy and annotation reliability | 1:30 | 6:00 |
+| 6 | Four extraction approaches | 1:45 | 7:45 |
+| 7 | Evaluation beyond a headline score | 1:30 | 9:15 |
+| 8 | Performance and execution cost | 1:40 | 10:55 |
+| 9 | The hard subset exposes opposite behaviours | 2:00 | 12:55 |
+| 10 | Which design choices mattered? | 1:30 | 14:25 |
+| 11 | Role family separates demand | 1:30 | 15:55 |
+| 12 | Taxonomy coverage and study limits | 1:05 | 17:00 |
+| 13 | Conclusions and next steps | 1:00 | 18:00 |
+
+---
+
+## Slide 1: Title · 0:30 · clock 0:30
+
+Good morning. Two jobs can both be called "analyst" and still ask for very different
+skills. My project asks how reliably we can measure those differences from the text of
+job adverts.
+
+I'm Md Asif Hossain, and this is my MSc Data Science project, supervised by Ashley
+Williams. I'll cover the problem, how I compared four extraction methods against one
+gold standard, and what the results show.
+
+---
+
+## Slide 2: What does an analyst need to know? · 1:15 · clock 1:45
+
+If you're hiring an analyst, is SQL essential?
+
+*[Point to the SQL chart]* It depends on which analyst. Only **14%** of
+business analyst adverts mention SQL. For data analysts it's nearly **68%**. That's a
+gap of about **53 percentage points** between roles that share the same word in their
+title.
+
+*[Gesture to the list]* The corpus covers six role families: business, data and finance
+analysts, data scientists, marketing analysts and analytics engineers. One "analyst"
+average would hide exactly the differences that matter to employers and to
+universities designing courses.
+
+There's also a measurement problem. The dataset has no skills field. Skills sit inside
+the free text, so a method has to decide which phrases are real requirements. "Reporting to the Head of
+Data" is not the same as "producing reports".
+
+If different methods read the same text differently, they give different accounts of
+demand. So before we use extraction to describe the market, we have to evaluate the
+extraction itself.
+
+---
+
+## Slide 3: Research gap and questions · 1:15 · clock 3:00
+
+The closest earlier study is Attwood and Williams, 2023. They used TF-IDF and cosine
+similarity to map **454** job descriptions to the Cyber Security Body of Knowledge.
+
+They had no labelled reference, so they judged the mappings by inspection, asking
+whether they made intuitive sense. That meant accuracy couldn't be measured. They ended
+by suggesting future work should, in their words, *"explore alternative mapping
+approaches."*
+
+Other studies, such as Sibarani and colleagues, did use human annotation. The gap is
+in comparison. I found no study that
+compares these four extraction families on one corpus, with one taxonomy, against one
+common reference.
+
+*[Walk down the questions]* That gives four research questions. **RQ1**: how do the
+four approaches compare overall? **RQ2**: where do they differ? **RQ3**: what drives
+that behaviour? And **RQ4**: what does the market analysis show?
+
+The order matters. I evaluate the measuring instrument first. Only then do I use it to
+describe demand, with its limits stated openly.
+
+---
+
+## Slide 4: Corpus preparation · 1:30 · clock 4:30
+
+The data comes from the public "1.3 million LinkedIn Jobs and Skills" dataset on
+Kaggle. It's secondary data. I didn't scrape LinkedIn myself.
+
+*[Walk down the table row by row]* Filtering for UK postings and analyst job titles gave
+**994** records. I removed **62** duplicate description records and **5** adverts built
+from a scam template, leaving **927**. Removing **26** stubs and non-UK relocation
+adverts left **901**. Removing **81** near-duplicates, meaning TF-IDF cosine above 0.9,
+gave the final corpus of **820** postings.
+
+To be open about this: the steps from 994 to 927 were done by hand, and that
+intermediate file wasn't kept, so they can't be re-run from code. But identifiers were assigned at 927, and exactly **107** are missing from the
+final corpus. That equals 26 plus 81, so it backs up the later counts, even though it
+doesn't prove each individual decision.
+
+The postings were first observed between 12 and 17 January 2024, and **69%** were first
+seen on the 13th. So this is a snapshot. It can compare roles within the sample, but it can't tell us which
+skills are rising or falling.
+
+---
+
+## Slide 5: Taxonomy and annotation reliability · 1:30 · clock 6:00
+
+I started from **80** candidate skills drawn from ESCO and O\*NET and narrowed them to
+**13** evaluated categories. Some are named technologies, like SQL and cloud platforms.
+Others are activities, like stakeholder communication and reporting.
+
+I then annotated **300** postings with an explicit-mention rule: a category is tagged
+only if the text gives evidence for it. "Nice to have" skills count. Company
+descriptions, qualification lists and job titles don't.
+
+There's an important asymmetry. The computational lexicons contain **192** fixed
+term entries. The human annotation was open, so a clear synonym could be tagged even if
+it wasn't on the list. That difference is the basis of the hard-subset test I'll show
+later.
+
+A second-pass audit revisited cells where my tags and the lexical matches disagreed. It
+caught missed mentions, but it also made the gold standard partly dependent on the
+lexicons, and I take that into account when I interpret the lexical results.
+
+For reliability, I blindly re-annotated **20** postings, which is **260** decisions. Cohen's
+kappa was **0.757**, with 16 removals and 8 additions. That shows consistency within one
+annotator. Agreement between independent annotators hasn't been measured.
+
+---
+
+## Slide 6: Four extraction approaches · 1:45 · clock 7:45
+
+The four methods all make the same thirteen yes-or-no decisions per posting, but they
+represent the text very differently.
+
+*[Point to each row as you go]*
+
+**TF-IDF cosine** turns each posting into a weighted term vector and compares it with a
+short pseudo-document for each category. Those pseudo-documents are built from the
+lexicons, so this method partly depends on the annotation vocabulary. ✂ *One fixed,
+corpus-wide normaliser keeps evaluation and market scores on the same scale.*
+
+**Zero-shot NLI** uses BART-large-MNLI. The posting is the premise, and each category
+becomes a hypothesis, such as "This job posting requires SQL". Long postings are split
+into overlapping chunks and the highest score is kept, because a skill only needs to be
+mentioned once.
+
+**BERTopic.** One advert usually asks for several skills, so I split postings into
+**23,186** segments, clustered those into topics, and linked each topic to the
+categories by embedding similarity. A posting's score is the highest affinity across
+its segments.
+
+The **local LLM** is Qwen2.5-7B, quantised to 4-bit and run with greedy decoding. The
+prompt includes the category descriptions and the annotation rules but leaves out the
+lexicon lists, and the model returns binary JSON.
+
+One difference to flag now: the three scored methods get thresholds tuned on the
+development set. The LLM just says yes or no, so there's nothing to tune, and its result
+is an **untuned operating point**.
+
+---
+
+## Slide 7: Evaluation beyond a headline score · 1:30 · clock 9:15
+
+The 300 gold postings were split into **100
+development** and **200 test** postings, stratified by role family with seed 42.
+Thresholds were chosen using development labels only. Test labels were used once, for
+the final scores. ✂ *The unsupervised steps did see unlabelled test text, so strictly
+this is a transductive setting, but no test labels were used for tuning.*
+
+I also checked alignment from the saved outputs instead of assuming it. All seven
+prediction matrices, the four methods plus three ablation arms, have the same 13
+categories in the same order and the same **703** test positives.
+
+The headline measure is **macro-F1**, which gives every category equal weight. That
+matters because the labels are very imbalanced. *[Point]* Stakeholder communication
+appears in **243** of 300 postings, while governance and GDPR appears in only **13**.
+
+But F1 on its own can mislead. On the test set, just predicting "stakeholder
+communication" for every posting scores an F1 of **0.895**. BERTopic scores exactly
+0.895 in that category, with perfect recall, because that's exactly what it does. So it
+hasn't beaten a constant baseline there.
+
+That's why I report trivial baselines and a separate hard subset alongside the
+averages.
+
+---
+
+## Slide 8: Performance and execution cost · 1:40 · clock 10:55
+
+This slide answers RQ1. *[Point to the table]* TF-IDF cosine comes first with a macro-F1
+of **0.759**. Zero-shot follows at **0.684**, BERTopic at **0.624**, and the local LLM
+at **0.610**. Micro-F1 gives the same ranking.
+
+The lexical reference scores **0.937**, but that number needs care. It uses the same
+term lists that informed the annotation, and the second-pass audit consulted them too.
+So it measures agreement with a closely related labelling procedure, not independent
+extraction ability. That's why it's shown on its own line, as a reference rather than
+a competitor.
+
+TF-IDF also borrows those term lists, although it decides by cosine similarity rather
+than simple presence. So the strongest method that is **fully independent of the
+lexicons is zero-shot**.
+
+Now the cost. TF-IDF took half a millisecond per posting. The LLM took **6 seconds**,
+about **12,000 times** longer. ✂ *Across all 820 postings, that's under half a second
+against roughly 1.4 hours.*
+
+So the cheapest method scored highest and the most expensive scored lowest. That's a
+comparison of the two ends, not a trend. Zero-shot costs more than BERTopic and still
+scores higher.
+
+These results describe the configurations I tested. In particular, the LLM didn't get
+the threshold tuning the other methods had.
+
+---
+
+## Slide 9: The hard subset exposes opposite behaviours · 2:00 · clock 12:55
+
+This slide is at the heart of RQ2. The test set has **2,600** decisions: 200 postings times 13 categories. In **2,547** of
+them, the lexical rule and the human label agree. Those are the easy cells, and every
+method scores between about **0.82 and 0.90** on them.
+
+The other **53** are cells where the lexicon and the human label disagree. **24** are
+lexical false positives: a term matched, but it isn't a real requirement, so the right
+answer is to reject it. **29** are lexical false negatives: a real skill written in
+words the lexicon doesn't list, so the right answer is to recover it.
+
+*[Point to the table]* The two methods behave in opposite ways. TF-IDF rejects only
+**4 of 24** false matches but recovers **17 of 29** missed mentions. The LLM rejects
+**20 of 24** but recovers only **4 of 29**.
+
+Add the two halves together and that difference disappears. The LLM gets 24 out of
+53, but a classifier that always says "absent" also gets **24 out of 53**, by rejecting
+every false match and recovering nothing.
+
+So is the LLM being selectively careful? The positive rates suggest it isn't. It says
+"present" on **14.7%** of easy cells and **15.1%** of hard cells, with Fisher's
+**p = 0.847**, even though true positives are roughly twice as common in the hard
+subset.
+
+That doesn't prove the rates are the same; the test simply finds no difference. But I
+can't claim the model is judging uncertainty selectively. It looks uniformly
+conservative. And with only 29 paraphrase cases, no method
+showed statistically reliable recovery of missed mentions.
+
+---
+
+## Slide 10: Which design choices mattered? · 1:30 · clock 14:25
+
+RQ3 asks what drives this behaviour. I ran two controlled ablations and one baseline
+decomposition.
+
+**First, the LLM prompt.** Swapping the full prompt for a minimal one, with the same
+model and the same decoding, moves macro-F1 from **0.610 to 0.604**. Other metrics move
+the other way, and each hard-subset cell changes by just one decision. So there's little
+evidence that the extra scaffolding helped.
+
+**Second, BERTopic outliers.** Forcing outlier segments into topics gives **0.624**,
+against **0.567** when they stay unassigned. But that's a precision-recall trade-off.
+Precision falls from 0.664 to 0.628, while recall rises from **0.583 to 0.718**. The
+hard-cell differences between the two arms are too small to separate statistically.
+
+**Third, the lexical decomposition.** Cosine variant A scores 0.759. Weighted-hit B and
+simple presence C make identical predictions and both score **0.937**. So TF-IDF
+weighting and threshold tuning add nothing beyond simple presence. Because these are
+three separate constructions, I call this a decomposition rather than a third ablation.
+
+---
+
+## Slide 11: Role family separates demand · 1:30 · clock 15:55
+
+RQ4: what does the market look like?
+
+For this, I applied the untuned lexical rule to all **820** postings. It's a fast,
+transparent implementation of the taxonomy's own decision rule, and it agreed with the gold standard on **97.7%** of the 3,900
+annotated cells.
+
+Stakeholder communication appears in **78.7%** of postings and reporting in
+**55.6%**. Visualisation, SQL and Excel each sit at about a third, within 1.4
+percentage points of each other, so no single tool dominates.
+
+Role family is where the real separation shows. *[Point to the table]* Communication
+stays high in all four large families, between about 73 and 82%. SQL swings from **9%**
+for finance analysts to **68%** for data analysts. Across the six pairwise family
+comparisons, **46** category differences survive correction within each comparison, and
+**41** of those also survive the stricter correction across all 78 tests.
+
+By contrast, no London versus rest-of-UK difference survives correction. Seniority
+could only be compared on the annotated sample, and its one Excel result depends on
+which measurement is used, so it can't support a claim about career progression.
+
+✂ *The Tableau dashboards present these precomputed results so they can be explored.*
+
+---
+
+## Slide 12: Taxonomy coverage and study limits · 1:05 · clock 17:00
+
+The taxonomy itself also limits what can be measured. BERTopic found an agile and scrum
+cluster of **232** segments and a mentoring and coaching cluster of **260**. Neither has
+its own category. Separately, my annotation used "Other" in **26** of 300 postings for
+skills outside the taxonomy.
+
+With a post-hoc affinity cut of 0.25, **60.2%** of segments fall in topics that map
+reasonably well to a category. That's a coverage diagnostic, not a prediction
+threshold, and the remainder isn't all missing skill demand. Some of it is benefits and
+recruiter text.
+
+The wider limits are one LinkedIn snapshot, a single annotator, and one quantised
+7-billion-parameter LLM. There's no salary field, and seniority covers only the
+annotated sample. So I make no claims about trends, about all employers, or about
+generative extraction in general.
+
+---
+
+## Slide 13: Conclusions and next steps · 1:00 · clock 18:00
+
+To conclude, the study contributes a common gold standard for comparing four extraction
+families, a hard-subset diagnostic that separates error types, controlled ablations, and
+evidence of gaps in the taxonomy.
+
+For measuring demand against a defined vocabulary, the lexical rule is fast and
+transparent, as long as its dependence and coverage limits are stated. None of the
+methods showed reliable recovery of paraphrased mentions at this scale.
+
+The next steps are to give the LLM scored outputs so its threshold can be tuned, to add
+independent annotators and a corpus collected over time, and to extend the taxonomy to
+cover agile and mentoring.
+
+*[Slow down]* The central message is this: **rejecting false matches and recovering
+missed mentions are different capabilities**, and a useful evaluation has to show both.
+
+Thank you. I'm happy to take questions.
+
+---
+
+## Likely questions: short answers
+
+**Why does the simplest method win?**
+Partly because TF-IDF shares the annotation term lists, so it isn't fully independent.
+It also commits to "present" often, which helps recall. The best fully lexicon-independent
+method is zero-shot at 0.684. (Sections 6.1, 8.1)
+
+**Isn't the 0.937 lexical score circular?**
+Yes, partly. That's why it's reported as a reference, not a competitor. The second-pass
+audit used the lexical matches, so the gold standard and the lexicon agree on 97.7% of
+cells by construction. (Sections 4.5, 6.1)
+
+**Why a 7B local model rather than a frontier API model?**
+To keep the pipeline fully runnable locally and avoid sending text to a third party. The
+Terms of Reference originally named an API model, and this departure is declared.
+Comparing against frontier models is future work. (Sections 1.5, 3.2, 9.4)
+
+**Couldn't you just tune the LLM?**
+Not with binary JSON output. There's no score to threshold. Asking for a confidence
+score per category would allow tuning on the development set. That's the first item of
+future work. At its current operating point, macro precision is 0.889 and macro recall
+is 0.488, with 383 predicted positives against 703 gold positives. (Sections 5.5, 9.4)
+
+**How reliable is a single annotator?**
+Intra-annotator kappa was 0.757 on a blind re-annotation of 20 postings (raw agreement
+236/260). Inter-annotator agreement isn't measured, and I state that as a limitation.
+(Section 4.6)
+
+**Why use the lexical rule for the market analysis instead of the best method?**
+It directly implements the taxonomy's decision rule, agrees with the gold standard on
+97.7% of cells, takes 0.008 seconds per posting and needs no GPU. Its dependence on the
+lexicon is disclosed. (Section 7.1)
+
+**Why BART-large-MNLI, when it ranked last in Kyritsis et al.?**
+That ranking was accuracy on five-class news. Its ROC AUC of 0.886 suggested useful
+score discrimination, which per-category thresholds tuned on the development set could
+exploit. (Section 5.4)
+
+**Did combining methods help?**
+An oracle that picks whichever method is right would get 2,590 of 2,600 cells, so the
+methods do fail in different places. But no practical ensemble beat TF-IDF on
+macro-F1: majority vote scored 0.720. Majority vote did raise micro-F1 from 0.813 to
+0.831. (Section 6.5)
+
+**Why Fisher and binomial tests, not t-tests or ANOVA?**
+The outcomes are binary, so exact tests fit the data. That replaces the plan in the
+Terms of Reference. (Section 5.2)
+
+**Why is statistics so high for finance analysts?**
+The annotation rule counts forecasting as statistics, so finance analysts (68.2%) and
+data scientists (62.5%) look similar on that category. (Sections 4.3, 7.3)
+
+**Ethics?**
+Favourable opinion under EthOS reference 92636. The data is secondary, with no human
+participants, and full advert texts aren't republished. Two changes from the original
+application, the local LLM and a public Tableau dashboard, are disclosed. (Section 3.2)
